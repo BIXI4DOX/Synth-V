@@ -1,12 +1,13 @@
 function getClientInfo() {
-    return {
-        "name": SV.T("Lengthen Notes by Grid"),
-        "category": "Notes",
-        "author": "BIXI DOX & ChatGPT",
-        "versionNumber": 1,
-        "minEditorVersion": 65540
-    };
+  return {
+    "name": SV.T("Lengthen Notes by Grid"),
+    "category": "Notes",
+    "author": "https://github.com/BIXI4DOX/Synth-V/tree/main",
+    "versionNumber": 1,
+    "minEditorVersion": 65540
+  };
 }
+
 
 
 //////////////////////////////////////////
@@ -17,24 +18,27 @@ function getClientInfo() {
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-																															//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////								
 // moves the piano roll viewport so the current selection is visible														//
-// recommended hotkey: f (focus) or v (view)																				//
-var SCRIPT_TITLE = "Scroll To Selection Start";																				//
+// SCRIPT_TITLE = "Scroll To Selection Start";																				//
+																															//
+// From script "ScrollToSelectionStart", intergrated into this script.														//
+// These are the variables needed to run the ViewPort function.																//
+// > BIXI																													//
 																															//
 // desired number of pixels between the left side of the screen and the start of the selection								//
 var OFFSET_H = 200;																											//
 																															//
 // number of pitches to offset vertical scrolling																			//
 // negative values can be helpful for positioning the selection above the parameter panel instead of being blocked by it	//
-var OFFSET_V = -6;																											//
+var OFFSET_V = 0 //-6;																										//
 																															//
 // whether to scroll horizontally and vertically																			//
 // if you want separate scripts/hotkeys for each, copy the script and modify these to your liking							//
-var SCROLL_H = true;																										//
+var SCROLL_H = false;																										//
 var SCROLL_V = true;																										//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -66,8 +70,6 @@ function scrollViewport() {												//
 
 
 
-
-
 //////////////////////////////////////////////////////////////////////////
 // Lengthen selected notes by one snap grid unit, with smart snap for ends
 function getSnapSetting() {												//
@@ -80,7 +82,6 @@ function getSnapSetting() {												//
     return b;															//
 }																		//
 //////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -109,12 +110,8 @@ function main() {														//
         // Apply smart snap												//
         newEnd = smartSnap(newEnd, tolerance);							//
         note.setDuration(newEnd - note.getOnset());						//
+    }																	//
+	scrollViewport();													//
+    SV.finish();														//
+}																		//
 //////////////////////////////////////////////////////////////////////////
-    }
-
-//////////////////////////
-	scrollViewport();	//
-//////////////////////////	
-	
-    SV.finish();
-}
